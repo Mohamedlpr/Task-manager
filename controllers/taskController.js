@@ -2,17 +2,15 @@ const Task = require("../models/taskModel");
 
 exports.getTasks = async (req, res) => {
   try {
-    let allowedFilters = ["status", "priority"];
-    let filter = {};
-    allowedFilters.forEach(async (category) => {
-      if (req.query[category] !== undefined) {
-        filter[category] = req.query[category]
-        const tasks = await Task.find(filter);
-        return res.status(200).json(tasks);
-      }
-    });
-    const allTasks = await Task.find();
-    res.status(200).json(allTasks);
+    const filter = {};
+    if (req.query.priority) {
+      filter.priority = req.query.priority;
+    }
+    if (req.query.status) {
+      filter.status = req.query.status;
+    }
+    const tasks = await Task.find(filter);
+    res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
