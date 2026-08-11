@@ -9,7 +9,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/tasks", require("./routes/taskRoutes"));
-app.use("api/task/:taskId/comments", require("./routes/commentRoutes"));
+app.use("/api/tasks/:taskId/comments", require("./routes/commentRoutes"));
 
 const PORT = process.env.PORT;
 
