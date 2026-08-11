@@ -20,3 +20,13 @@ exports.getComments = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+exports.deleteComment = async (req, res) => {
+  try {
+    const commentId = req.params.id;
+    const comment = await Comment.findByIdAndDelete(commentId);
+    res.status(204).end()
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
