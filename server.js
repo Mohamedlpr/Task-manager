@@ -10,6 +10,7 @@ connectDB();
 
 app.use("/api/tasks", require("./routes/taskRoutes"));
 app.use("/api/tasks/:taskId/comments", require("./routes/commentRoutes"));
+app.use("/api/auth", require("./routes/userRoutes")); 
 
 const PORT = process.env.PORT;
 
