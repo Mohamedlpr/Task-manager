@@ -7,8 +7,9 @@ const {
   updateTask,
   deleteTask,
 } = require("../controllers/taskController");
+const { logRequest } = require("../middleware/authMiddleware");
 
-router.get("/", getTasks);
+router.get("/", logRequest, getTasks);
 router.get("/:id", getById);
 router.post("/", createTask);
 router.patch("/:id", updateTask);
