@@ -19,20 +19,17 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
+exports.login = async (req, res) => {
   try {
     const userEmail = req.body.email;
     const userPassword = req.body.password;
     const userEmailVerification = await User.findOne({ email: userEmail });
-    if (!userEmailVerification) {
-      return res.status(400).json({ message: "user was not found" });
-    };
     const password = await bcrypt.compare(userPassword, userEmailVerification.password);
-    if (!password) {
-      return res.status(401).json({ message: "password is not correct" })
+    if (!userEmailVerification || !password) {
+      return res.status(401).json({ message: "login information you entered is incorrect" })
     }
-    const token = await jwt.sign({ id: User._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    res.status(200).json(token)
+    const token = jwt.sign({ id: userEmailVerification._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    res.status(200).json({token})
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
