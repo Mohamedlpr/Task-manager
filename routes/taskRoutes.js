@@ -7,12 +7,12 @@ const {
   updateTask,
   deleteTask,
 } = require("../controllers/taskController");
-const { logRequest } = require("../middleware/authMiddleware");
+const { tokenVerification } = require("../middleware/authMiddleware");
 
-router.get("/", logRequest, getTasks);
-router.get("/:id", logRequest, getById);
-router.post("/", logRequest, createTask);
-router.patch("/:id", logRequest, updateTask);
-router.delete("/:id", logRequest, deleteTask);
+router.get("/", tokenVerification, getTasks);
+router.get("/:id", tokenVerification, getById);
+router.post("/", tokenVerification, createTask);
+router.patch("/:id", tokenVerification, updateTask);
+router.delete("/:id", tokenVerification, deleteTask);
 
 module.exports = router;
