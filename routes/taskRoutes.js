@@ -10,9 +10,9 @@ const {
 const { logRequest } = require("../middleware/authMiddleware");
 
 router.get("/", logRequest, getTasks);
-router.get("/:id", getById);
-router.post("/", createTask);
-router.patch("/:id", updateTask);
-router.delete("/:id", deleteTask);
+router.get("/:id", logRequest, getById);
+router.post("/", logRequest, createTask);
+router.patch("/:id", logRequest, updateTask);
+router.delete("/:id", logRequest, deleteTask);
 
 module.exports = router;

@@ -1,10 +1,16 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config;
+require("dotenv").config();
 
 exports.logRequest = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
-    jwt.verify(authHeader, process.env.JWT_SECRET);
+    if(!authHeader){
+      return res.status(401).json({message: "authorization was not provided"})
+    }
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded
+    console.log(decoded)
     next();
   } catch {
     res.status(401).json({ message: "invalid or expired token" });
