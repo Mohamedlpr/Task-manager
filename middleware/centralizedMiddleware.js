@@ -1,4 +1,4 @@
-const errorHandling = async (err, req, res, next) => {
+const errorHandling = (err, req, res, next) => {
   let statusCode;
   if (res.statusCode !== 200) {
     statusCode = res.statusCode;

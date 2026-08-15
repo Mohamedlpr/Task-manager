@@ -20,13 +20,13 @@ exports.getTasks = async (req, res, next) => {
   }
 };
 
-exports.createTask = async (req, res) => {
+exports.createTask = async (req, res, next) => {
   try {
     const data = req.body;
     const task = await Task.create({ ...data, user: req.user.id });
     res.status(201).json(task);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    next(err);
   }
 };
 
@@ -66,7 +66,7 @@ exports.deleteTask = async (req, res, next) => {
   try {
     const id = req.params.id;
     const deletedTask = await Task.findOneAndDelete({ _id: id, user: req.user.id });
-    if (!deletedTask){
+    if (!deletedTask) {
       res.status(404);
       throw new Error("Task not found");
     }
