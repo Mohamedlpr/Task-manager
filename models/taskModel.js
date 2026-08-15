@@ -15,6 +15,7 @@ const taskSchema = new mongoose.Schema({
   },
   description: { type: String, required: true, minlength: 10, maxlength: 100 },
   priority: { type: String, enum: ["high", "medium", "low"], required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true, immutable: true }
 });
 
 module.exports = mongoose.model("Task", taskSchema);
