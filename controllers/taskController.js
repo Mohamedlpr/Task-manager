@@ -33,7 +33,7 @@ exports.createTask = async (req, res) => {
 exports.getById = async (req, res) => {
   try {
     const id = req.params.id;
-    const task = await Task.find({ _id: id, user: req.user.id });
+    const task = await Task.findOne({ _id: id, user: req.user.id });
     if (!task) return res.status(404).json({ message: "Task not found" });
     res.status(200).json(task);
   } catch (err) {
@@ -45,7 +45,7 @@ exports.updateTask = async (req, res) => {
   try {
     const id = req.params.id;
     const updates = req.body;
-    const newTask = await Task.findOneAndUpdate({ _id: id, user: req.user.id }, { ...updates, user: req.user.id }, {
+    const newTask = await Task.findOneAndUpdate({ _id: id, user: req.user.id }, updates, {
       returnDocument: "after",
       runValidators: true,
     });
