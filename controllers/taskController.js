@@ -1,6 +1,6 @@
 const Task = require("../models/taskModel");
 
-exports.getTasks = async (req, res) => {
+exports.getTasks = async (req, res, next) => {
   try {
     const filter = { user: req.user.id };
     if (req.query.priority) {
@@ -16,7 +16,7 @@ exports.getTasks = async (req, res) => {
     const tasks = await Task.find(filter).limit(limit).skip(skip);
     res.status(200).json(tasks);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    next(err);
   }
 };
 
@@ -30,18 +30,21 @@ exports.createTask = async (req, res) => {
   }
 };
 
-exports.getById = async (req, res) => {
+exports.getById = async (req, res, next) => {
   try {
     const id = req.params.id;
     const task = await Task.findOne({ _id: id, user: req.user.id });
-    if (!task) return res.status(404).json({ message: "Task not found" });
+    if (!task) {
+      res.status(404);
+      throw new Error("Task not found");
+    }
     res.status(200).json(task);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    next(err);
   }
 };
 
-exports.updateTask = async (req, res) => {
+exports.updateTask = async (req, res, next) => {
   try {
     const id = req.params.id;
     const updates = req.body;
@@ -49,21 +52,26 @@ exports.updateTask = async (req, res) => {
       returnDocument: "after",
       runValidators: true,
     });
-    if (!newTask) return res.status(404).json({ message: "Task not found" });
+    if (!newTask) {
+      res.status(404);
+      throw new Error("Task not found");
+    }
     res.status(200).json(newTask);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    next(err);
   }
 };
 
-exports.deleteTask = async (req, res) => {
+exports.deleteTask = async (req, res, next) => {
   try {
     const id = req.params.id;
     const deletedTask = await Task.findOneAndDelete({ _id: id, user: req.user.id });
-    if (!deletedTask)
-      return res.status(404).json({ message: "Task not found" });
+    if (!deletedTask){
+      res.status(404);
+      throw new Error("Task not found");
+    }
     res.status(204).end();
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    next(err)
   }
 };
