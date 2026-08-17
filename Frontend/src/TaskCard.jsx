@@ -1,8 +1,9 @@
-function TaskCard(props) {
+function TaskCard({ title, description, priority }) {
   return (
     <div className="tasks">
-      <h2>Title: {props.title}</h2>
-      <p>Priority: {props.priority}</p>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      {priority === "high" ? <span style={{color: "red"}}>{priority}</span> : <span>{priority}</span>}
     </div>
   );
 }
