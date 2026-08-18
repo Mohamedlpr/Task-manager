@@ -1,7 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-body{
+body {
   font-family: Roboto;
-  background-color: #222;
+  background-color: #0e0f14;
   color: white;
+  box-sizing: border-box;
+}
+
+.taskContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.taskCard {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 360px;
+  min-height: 220px;
+  text-align: center;
+  background-color: #17181e;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.taskCardHighPriority,
+.taskCardMediumPriority,
+.taskCardLowPriority {
+  display: inline-block;
+  align-self: self-start;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.taskCard .taskCardHighPriority {
+  color: hsl(0, 93%, 57%);
+  background-color: hsla(0, 93%, 57%, 0.17);
+}
+
+.taskCard .taskCardMediumPriority {
+  color: hsl(43, 100%, 50%);
+  background-color: hsla(43, 100%, 50%, 0.17);
+}
+
+.taskCard .taskCardLowPriority {
+  color: hsl(81, 97%, 64%);
+  background-color: hsla(81, 97%, 64%, 0.17);
 }

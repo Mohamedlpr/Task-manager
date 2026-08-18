@@ -24,6 +24,7 @@ function App() {
 
   const taskCards = tasks.map((task) => (
     <TaskCard
+      key={task.id}
       title={task.title}
       description={task.description}
       priority={task.priority}
@@ -31,7 +32,7 @@ function App() {
   ));
   return (
     <>
-      {taskCards}
+      <div className="taskContainer">{taskCards}</div>
     </>
   );
 }
