@@ -1,38 +1,17 @@
-import TaskCard from "./TaskCard.jsx";
+import TaskCard from "./components/TaskCard.jsx";
+import Header from "./components/Header.jsx";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard.jsx";
+import Counter from "./pages/Counter.jsx";
 
 function App() {
-  const tasks = [
-    {
-      id: 1,
-      title: "Laundry",
-      description: "Do the laundry",
-      priority: "high",
-    },
-    {
-      id: 2,
-      title: "Groceries",
-      description: "Get the Groceries",
-      priority: "low",
-    },
-    {
-      id: 3,
-      title: "Code review",
-      description: "Review your code",
-      priority: "medium",
-    },
-  ];
-
-  const taskCards = tasks.map((task) => (
-    <TaskCard
-      key={task.id}
-      title={task.title}
-      description={task.description}
-      priority={task.priority}
-    />
-  ));
   return (
     <>
-      <div className="taskContainer">{taskCards}</div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/counter" element={<Counter/>}/>
+      </Routes>
     </>
   );
 }
