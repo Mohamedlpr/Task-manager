@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -39,6 +40,7 @@ function Signup() {
         placeholder="Confirm password"
       />
       <button onClick={buttonClick}>Sign up</button>
+      <Link className="signupLink" to="/login">Already have an account?</Link>
     </div>
   );
 }

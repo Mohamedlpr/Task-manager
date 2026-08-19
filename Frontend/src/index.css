@@ -167,6 +167,7 @@ body {
   text-decoration: none;
 }
 
+.loginContainer,
 .signupContainer {
   display: flex;
   flex-direction: column;
@@ -176,16 +177,26 @@ body {
   border: solid #f0eff5 1px;
   box-shadow: 0px 0px 15px -8px #f0eff5;
   border-radius: 20px;
-  width: 500px;
-  height: 600px;
   margin: auto;
   gap: 50px;
 }
 
+.signupContainer {
+  width: 500px;
+  height: 630px;
+}
+
+.loginContainer {
+  width: 500px;
+  height: 550px;
+}
+
+.loginContainer h1,
 .signupContainer h1 {
   font-size: 3em;
 }
 
+.loginContainer input,
 .signupContainer input {
   border: none;
   outline: none;
@@ -197,20 +208,29 @@ body {
   color: #f0eff5;
 }
 
+.loginContainer input::placeholder,
 .signupContainer input::placeholder {
   color: #f0eff554;
   opacity: 1;
 }
 
+.loginContainer input:focus,
 .signupContainer input:focus {
   border-bottom: 1px solid #f0eff59e;
   transition: border-color 0.3s ease;
 }
 
+.loginContainer button,
 .signupContainer button {
   width: 120px;
   height: 50px;
   font-size: 1.1em;
+}
+
+.loginLink,
+.signupLink{
+  margin: -30px;
+  color: #d9b8ff;
 }
 
 .taskContainer {
@@ -291,6 +311,7 @@ body {
   padding: 30px;
 }
 
+.loginContainer button,
 .signupContainer button,
 .counterButtons button {
   border: none;
@@ -308,6 +329,7 @@ body {
   height: 50px;
 }
 
+.loginContainer button:before,
 .signupContainer button:before,
 .counterButtons button:before {
   content: "";
@@ -337,21 +359,25 @@ body {
   border-radius: 10px;
 }
 
+.loginContainer button:active,
 .signupContainer button:active,
 .counterButtons button:active {
   color: #000;
 }
 
+.loginContainer button:active:after,
 .signupContainer button:active:after,
 .counterButtons button:active:after {
   background: transparent;
 }
 
+.loginContainer button:hover:before,
 .signupContainer button:hover:before,
 .counterButtons button:hover:before {
   opacity: 1;
 }
 
+.loginContainer button:after,
 .signupContainer button:after,
 .counterButtons button:after {
   z-index: -1;
