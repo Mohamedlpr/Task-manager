@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Counter from "./pages/Counter.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
+      <Footer/>
     </>
   );
 }

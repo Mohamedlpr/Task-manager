@@ -1,6 +1,19 @@
+import { useEffect } from "react";
 import TaskCard from "../components/TaskCard.jsx";
 
 function Dashboard() {
+  useEffect(() => {
+    const token = async () => await localStorage.getItem("token");
+    const res = fetch("http://localhost:3000/api/tasks", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res);
+  });
+
   let tasks = [
     {
       id: 1,

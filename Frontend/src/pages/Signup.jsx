@@ -6,20 +6,30 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const submitHandler = () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
     if (
-      confirmPassword == password &&
+      confirmPassword === password &&
       password !== "" &&
       confirmPassword !== ""
     ) {
-      console.log(email, password);
+      const data = {
+        email: email,
+        password: password,
+      };
+      const res = await fetch("http://localhost:3000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      console.log(res);
     } else {
       console.log("Passwords do not match");
     }
   };
 
   return (
-    <form className="signupContainer">
+    <form onSubmit={submitHandler} className="signupContainer">
       <h1>Sign up</h1>
       <input
         required
@@ -42,7 +52,7 @@ function Signup() {
         onChange={(e) => setConfirmPassword(e.target.value)}
         placeholder="Confirm password"
       />
-      <button onSubmit={submitHandler}>Sign up</button>
+      <button type="submit">Sign up</button>
       <Link className="signupLink" to="/login">
         Already have an account?
       </Link>

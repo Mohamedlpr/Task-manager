@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Header() {
+  const token = localStorage.getItem("token");
   return (
     <div className="navWrapper">
       <header className="nav">
