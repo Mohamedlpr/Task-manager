@@ -6,19 +6,27 @@ function Header() {
       <header className="nav">
         <img src="/favicon.png" alt="Task Manger Logo" />
         <div className="navContainer">
-          <Link className="navItems" to="/">
+          <Link className="navItems removeDecoration" to="/">
             Home
           </Link>
-          <Link className="navItems" to="/counter">
+          <Link className="navItems removeDecoration" to="/counter">
             Counter
           </Link>
-          <Link className="navItems" to="/about">
+          <Link className="navItems removeDecoration" to="/about">
             About US
           </Link>
         </div>
         <div className="auth">
-          <button id="login"><span className="loginSpan">Login</span></button>
-          <button id="signup"><span className="signupSpan">Sign up</span></button>
+          <Link className="removeDecoration" to="/login">
+            <button id="login">
+              <span className="loginSpan">Login</span>
+            </button>
+          </Link>
+          <Link className="removeDecoration" to="/signup">
+            <button id="signup">
+              <span className="signupSpan">Sign up</span>
+            </button>
+          </Link>
         </div>
       </header>
     </div>

@@ -10,7 +10,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/counter" element={<Counter/>}/>
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/login" element={<login />} />
+        <Route path="/signup" element={<signup />} />
       </Routes>
     </>
   );
