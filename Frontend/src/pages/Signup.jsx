@@ -6,7 +6,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const buttonClick = () => {
+  const submitHandler = () => {
     if (
       confirmPassword == password &&
       password !== "" &&
@@ -19,29 +19,34 @@ function Signup() {
   };
 
   return (
-    <div className="signupContainer">
+    <form className="signupContainer">
       <h1>Sign up</h1>
       <input
+        required
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
       />
       <input
+        required
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Choose password"
       />
       <input
+        required
         type="password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
         placeholder="Confirm password"
       />
-      <button onClick={buttonClick}>Sign up</button>
-      <Link className="signupLink" to="/login">Already have an account?</Link>
-    </div>
+      <button onSubmit={submitHandler}>Sign up</button>
+      <Link className="signupLink" to="/login">
+        Already have an account?
+      </Link>
+    </form>
   );
 }
 

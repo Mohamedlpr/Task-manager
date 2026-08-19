@@ -5,28 +5,30 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const buttonClick = () => {
-    
-  };
+  const submitHandler = () => {}
 
   return (
-    <div className="loginContainer">
+    <form className="loginContainer">
       <h1>Login</h1>
       <input
+      required
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
       />
       <input
+      required
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Enter password"
       />
-      <button onClick={buttonClick}>Login</button>
-      <Link className="loginLink" to="/login">Don't have an account?</Link>
-    </div>
+      <button onSubmit={buttonClick}>Login</button>
+      <Link className="loginLink" to="/login">
+        Don't have an account?
+      </Link>
+    </form>
   );
 }
 
