@@ -16,6 +16,10 @@ function Header() {
             About US
           </Link>
         </div>
+        <div className="auth">
+          <button id="login"><span className="loginSpan">Login</span></button>
+          <button id="signup"><span className="signupSpan">Sign up</span></button>
+        </div>
       </header>
     </div>
   );
