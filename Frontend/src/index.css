@@ -167,6 +167,52 @@ body {
   text-decoration: none;
 }
 
+.signupContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #17181e;
+  border: solid #f0eff5 1px;
+  box-shadow: 0px 0px 15px -8px #f0eff5;
+  border-radius: 20px;
+  width: 500px;
+  height: 600px;
+  margin: auto;
+  gap: 50px;
+}
+
+.signupContainer h1 {
+  font-size: 3em;
+}
+
+.signupContainer input {
+  border: none;
+  outline: none;
+  background: transparent;
+  border-bottom: 1px solid #f0eff554;
+  padding: 8px 0;
+  width: 70%;
+  font-size: 16px;
+  color: #f0eff5;
+}
+
+.signupContainer input::placeholder {
+  color: #f0eff554;
+  opacity: 1;
+}
+
+.signupContainer input:focus {
+  border-bottom: 1px solid #f0eff59e;
+  transition: border-color 0.3s ease;
+}
+
+.signupContainer button {
+  width: 120px;
+  height: 50px;
+  font-size: 1.1em;
+}
+
 .taskContainer {
   display: flex;
   flex-direction: row;
@@ -245,9 +291,8 @@ body {
   padding: 30px;
 }
 
+.signupContainer button,
 .counterButtons button {
-  width: 100px;
-  height: 50px;
   border: none;
   outline: none;
   color: #f0eff5;
@@ -258,6 +303,12 @@ body {
   border-radius: 10px;
 }
 
+.counterButtons button {
+  width: 100px;
+  height: 50px;
+}
+
+.signupContainer button:before,
 .counterButtons button:before {
   content: "";
   background: linear-gradient(
@@ -286,18 +337,22 @@ body {
   border-radius: 10px;
 }
 
+.signupContainer button:active,
 .counterButtons button:active {
   color: #000;
 }
 
+.signupContainer button:active:after,
 .counterButtons button:active:after {
   background: transparent;
 }
 
+.signupContainer button:hover:before,
 .counterButtons button:hover:before {
   opacity: 1;
 }
 
+.signupContainer button:after,
 .counterButtons button:after {
   z-index: -1;
   content: "";
