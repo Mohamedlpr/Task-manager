@@ -7,14 +7,28 @@ body {
   box-sizing: border-box;
 }
 
+.navWrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .nav {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-content: center;
   background-color: #17181e;
-  height: 57px;
+  box-shadow: 0px 0px 15px -5px #f0eff5;
+  height: 52px;
+  width: 60%;
   border-radius: 60px;
-  padding: 5px;
+  padding: 10px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.nav:hover{
+  box-shadow: 0px 0px 15px 0px #D9B8FF;
 }
 
 .nav img {
@@ -26,8 +40,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 2%;
-  gap: 20px;
+  padding-left: 3%;
+  gap: 25px;
 }
 
 .navContainer .navItems {
@@ -81,6 +95,7 @@ body {
   text-align: center;
   background-color: #17181e;
   border: solid #f0eff5 1px;
+  box-shadow: 0px 0px 15px -8px #f0eff5;
   border-radius: 20px;
   padding: 20px;
   margin: 10px;
@@ -148,8 +163,8 @@ body {
   height: 50px;
   border: none;
   outline: none;
-  color: #fff;
-  background: #111;
+  color: #f0eff5;
+  background: #0d0d0d;
   cursor: pointer;
   position: relative;
   z-index: 0;
@@ -160,7 +175,7 @@ body {
   content: "";
   background: linear-gradient(
     45deg,
-    #5B21B6, #7C3AED, #B366FF, #D9B8FF, #e448ec, #F472B6, #6366F1, #22D3EE, #A3E635
+    #5B21B6, #7C3AED, #B366FF, #d9b8ff, #e448ec, #F472B6, #6366F1, #2270ee, #3590e6
   );
   position: absolute;
   top: -2px;
