@@ -1,44 +1,47 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TaskCard from "../components/TaskCard.jsx";
 
 function Dashboard() {
-  useEffect(() => {
-    const token = async () => await localStorage.getItem("token");
-    const res = fetch("http://localhost:3000/api/tasks", {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(res);
-  });
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  let tasks = [
-    {
-      id: 1,
-      title: "Laundry",
-      description: "Do the laundry",
-      priority: "high",
-    },
-    {
-      id: 2,
-      title: "Groceries",
-      description: "Get the Groceries",
-      priority: "low",
-    },
-    {
-      id: 3,
-      title: "Code review",
-      description: "Review your code",
-      priority: "medium",
-    },
-  ];
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:3000/api/tasks", {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!res.ok) throw new Error("Failed to load tasks");
+        const data = await res.json();
+        setTasks(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTasks();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="loaderContainer">
+        <div class="loader"></div>
+      </div>
+    );
+
+  if (error) return <p>error</p>;
 
   const taskCards = tasks.map((task) => (
     <TaskCard
-      key={task.id}
-      title={task.title}
+      key={task._id}
+      title={task.name}
       description={task.description}
       priority={task.priority}
     />
