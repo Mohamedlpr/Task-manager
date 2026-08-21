@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CreateTask() {
+function CreateTask({onCreatingTask}) {
   const [showModal, setShowModal] = useState(false);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
@@ -45,6 +45,7 @@ function CreateTask() {
       setPriority("");
       setError(null);
       setShowModal(false);
+      onCreatingTask();
     } catch (err) {
       setError(err.message);
     }

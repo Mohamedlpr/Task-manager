@@ -1,9 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+:root{
+  --smoky-black: #0d0d0d;
+  --midnight-obsidian: #17181e;
+  --purple-hedonist: #b366ff;
+  --digital-lilac: #d9b8ff;
+  --arabic-white: #f0eff5;
+}
+
 body {
   font-family: Roboto;
-  background-color: #0d0d0d;
-  color: #f0eff5;
+  background-color: var(--smoky-black);
+  color: var(--arabic-white);
   box-sizing: border-box;
   margin: 15px 5%;
 }
@@ -18,8 +26,8 @@ body {
   display: flex;
   flex-direction: row;
   align-content: center;
-  background-color: #17181e;
-  box-shadow: 0px 0px 15px -5px #f0eff5;
+  background-color: var(--midnight-obsidian);
+  box-shadow: 0px 0px 15px -5px var(--arabic-white);
   height: 52px;
   width: 60%;
   border-radius: 60px;
@@ -29,7 +37,7 @@ body {
 }
 
 .nav:hover {
-  box-shadow: 0px 0px 15px 0px #d9b8ff;
+  box-shadow: 0px 0px 15px 0px var(--digital-lilac);
 }
 
 .nav img {
@@ -47,13 +55,13 @@ body {
 
 .navContainer .navItems {
   display: inline-block;
-  color: #d9b8ff;
+  color: var(--digital-lilac);
   font-size: 1.5em;
   position: relative;
 }
 
 .navItems:hover {
-  color: #d9b8ff;
+  color: var(--digital-lilac);
 }
 
 .navItems::after,
@@ -62,7 +70,7 @@ body {
   position: absolute;
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, #b366ff, #d9b8ff);
+  background: linear-gradient(to right, var(--purple-hedonist), var(--digital-lilac));
   bottom: -5px;
   left: 0;
   transform: scaleX(0);
@@ -102,20 +110,20 @@ body {
 }
 
 .auth #signup {
-  background-color: #f0eff5;
+  background-color: var(--arabic-white);
   border-radius: 50px;
 }
 
 .auth #signup .signupSpan {
   position: relative;
   font-size: 1.5em;
-  color: #0d0d0d;
+  color: var(--smoky-black);
   transition: 0.5s;
   z-index: 3;
 }
 
 .auth #signup:hover .signupSpan {
-  color: #f0eff5;
+  color: var(--arabic-white);
   transform: rotateY(360deg);
 }
 
@@ -132,7 +140,7 @@ body {
 }
 
 .auth #signup:before {
-  background: #b366ff;
+  background: var(--purple-hedonist);
 }
 
 .auth #signup:hover:before {
@@ -140,7 +148,7 @@ body {
 }
 
 .auth #login {
-  background-color: #b366ff;
+  background-color: var(--purple-hedonist);
 }
 
 #login .loginSpan {
@@ -148,16 +156,16 @@ body {
   font-size: 1.5em;
   transition: 0.5s;
   z-index: 3;
-  color: #f0eff5;
+  color: var(--arabic-white);
 }
 
 .auth #login:hover .loginSpan {
-  color: #0d0d0d;
+  color: var(--smoky-black);
   transform: rotateY(360deg);
 }
 
 .auth #login:before {
-  background-color: #f0eff5;
+  background-color: var(--arabic-white);
 }
 
 .auth #login:hover:before {
@@ -173,7 +181,7 @@ body {
 .taskCard:hover,
 .signupContainer:hover,
 .loginContainer:hover {
-  box-shadow: 0px 0px 15px -4px #d9b8ff;
+  box-shadow: 0px 0px 15px -4px var(--digital-lilac);
 }
 
 .modalContent,
@@ -183,9 +191,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #17181e;
+  background-color: var(--midnight-obsidian);
   border: solid hsl(231, 13%, 30%) 1px;
-  box-shadow: 0px 0px 15px -8px #f0eff5;
+  box-shadow: 0px 0px 15px -8px var(--arabic-white);
   border-radius: 20px;
   margin: auto;
   gap: 50px;
@@ -214,24 +222,24 @@ body {
   border: none;
   outline: none;
   background: transparent;
-  border-bottom: 1px solid #f0eff554;
+  border-bottom: 1px solid hsla(250, 23%, 95%, 0.329);
   padding: 8px 0;
   width: 70%;
   font-size: 16px;
-  color: #f0eff5;
+  color: var(--arabic-white);
 }
 
 .modalContent input::placeholder,
 .loginContainer input::placeholder,
 .signupContainer input::placeholder {
-  color: #f0eff554;
+  color: hsla(250, 23%, 95%, 0.329);
   opacity: 1;
 }
 
 .modalContent input:focus,
 .loginContainer input:focus,
 .signupContainer input:focus {
-  border-bottom: 1px solid #f0eff59e;
+  border-bottom: 1px solid hsla(250, 23%, 95%, 0.62);
   transition: border-color 0.3s ease;
 }
 
@@ -240,14 +248,14 @@ body {
   width: 120px;
   height: 50px;
   font-size: 1.1em;
-  color: #f0eff5;
-  background: #0d0d0d;
+  color: var(--arabic-white);
+  background: var(--smoky-black);
 }
 
 .loginLink,
 .signupLink {
   margin: -30px;
-  color: #d9b8ff;
+  color: var(--digital-lilac);
 }
 
 .loaderContainer,
@@ -271,9 +279,9 @@ body {
   width: 70%;
   height: 50px;
   text-align: center;
-  background-color: #17181e;
+  background-color: var(--midnight-obsidian);
   border: solid hsl(231, 13%, 30%) 1px;
-  box-shadow: 0px 0px 15px -8px #f0eff5;
+  box-shadow: 0px 0px 15px -8px var(--arabic-white);
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 20px;
   padding: 10px;
@@ -287,8 +295,8 @@ body {
 
 .modalContent button,
 .createContainer button {
-  background-color: #b366ff;
-  color: #f0eff5;
+  background-color: var(--purple-hedonist);
+  color: var(--arabic-white);
   font-family: Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
@@ -332,7 +340,7 @@ body {
   justify-content: center;
 }
 
-.priorityContainer{
+.priorityContainer {
   display: flex;
   flex-direction: column;
 }
@@ -340,7 +348,7 @@ body {
 .priority {
   display: flex;
   position: relative;
-  background: #0d0d0d;
+  background: var(--smoky-black);
   border-radius: 1rem;
   backdrop-filter: blur(12px);
   overflow: hidden;
@@ -362,7 +370,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #f0eff5;
+  color: var(--arabic-white);
   position: relative;
   z-index: 2;
   transition: color 0.3s ease-in-out;
@@ -396,7 +404,7 @@ body {
   background-color: hsla(0, 93%, 57%, 0.5);
 }
 
-.error{
+.error {
   color: #f72b2b;
   margin-top: -30px;
 }
@@ -404,12 +412,12 @@ body {
 .taskCard {
   display: inline-flex;
   flex-direction: column;
-  width: 360px;
+  width: 23.3%;
   height: 220px;
   text-align: center;
-  background-color: #17181e;
+  background-color: var(--midnight-obsidian);
   border: solid hsl(231, 13%, 30%) 1px;
-  box-shadow: 0px 0px 15px -8px #f0eff5;
+  box-shadow: 0px 0px 15px -8px var(--arabic-white);
   border-radius: 20px;
   padding: 20px;
   margin: 10px;
@@ -448,8 +456,8 @@ body {
   width: 500px;
   height: 300px;
   text-align: center;
-  background-color: #17181e;
-  border: solid #f0eff5 1px;
+  background-color: var(--midnight-obsidian);
+  border: solid var(--arabic-white) 1px;
   border-radius: 20px;
   margin: auto;
 }
@@ -487,8 +495,8 @@ body {
 .counterButtons button {
   width: 100px;
   height: 50px;
-  color: #f0eff5;
-  background: #0d0d0d;
+  color: var(--arabic-white);
+  background: var(--smoky-black);
 }
 
 .loginContainer button:before,
@@ -499,8 +507,8 @@ body {
     45deg,
     #5b21b6,
     #7c3aed,
-    #b366ff,
-    #d9b8ff,
+    var(--purple-hedonist),
+    var(--digital-lilac),
     #e448ec,
     #f472b6,
     #6366f1,
@@ -573,7 +581,7 @@ body {
 .loader {
   width: 40px;
   height: 20px;
-  --c: no-repeat radial-gradient(farthest-side, #f0eff5 93%, #0000);
+  --c: no-repeat radial-gradient(farthest-side, var(--arabic-white) 93%, #0000);
   background:
     var(--c) 0 0,
     var(--c) 50% 0;
@@ -582,18 +590,20 @@ body {
   clip-path: inset(-200% -100% 0 0);
   animation: l6-0 1.5s linear infinite;
 }
+
 .loader:before {
   content: "";
   position: absolute;
   width: 8px;
   height: 12px;
-  background: #f0eff5;
+  background: var(--arabic-white);
   left: -16px;
   top: 0;
   animation:
     l6-1 1.5s linear infinite,
     l6-2 0.5s cubic-bezier(0, 200, 0.8, 200) infinite;
 }
+
 .loader:after {
   content: "";
   position: absolute;
@@ -601,9 +611,20 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #f0eff5;
+  background: var(--arabic-white);
   animation: l6-3 1.5s linear infinite;
 }
+
+footer {
+  display: flex;
+  flex-direction: row;
+  color: hsla(250, 23%, 95%, 0.329);
+  padding: 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 @keyframes l6-0 {
   0%,
   30% {

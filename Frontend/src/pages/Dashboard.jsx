@@ -9,7 +9,10 @@ function Dashboard() {
   
 
   useEffect(() => {
-    const fetchTasks = async () => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
       try {
         const token = localStorage.getItem("token");
         const res = await fetch("http://localhost:3000/api/tasks", {
@@ -28,8 +31,6 @@ function Dashboard() {
         setLoading(false);
       }
     };
-    fetchTasks();
-  }, []);
 
   if (loading)
     return (
@@ -56,7 +57,7 @@ function Dashboard() {
 
   return (
     <>
-      <CreateTask/>
+      <CreateTask onCreatingTask={fetchTasks}/>
       <div className="taskContainer">{taskCards}</div>
     </>
   );
