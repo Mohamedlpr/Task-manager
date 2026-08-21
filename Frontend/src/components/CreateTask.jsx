@@ -18,6 +18,8 @@ function CreateTask() {
     } else if (priority.trim() === "") {
       setError("Task priority is required");
       return;
+    } else {
+      setError(null);
     }
     try {
       const token = localStorage.getItem("token");
@@ -38,12 +40,13 @@ function CreateTask() {
       if (!res.ok) {
         throw new Error(data.message);
       }
-    } catch (err) {
-      setError(err.message);
-    } finally {
       setTaskName("");
       setDescription("");
       setPriority("");
+      setError(null);
+      setShowModal(false);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -60,6 +63,8 @@ function CreateTask() {
           onClick={() => {
             setShowModal(false);
             setError(null);
+            setTaskName("");
+            setDescription("");
             setPriority("");
           }}
         >
@@ -83,39 +88,38 @@ function CreateTask() {
               type="text"
               placeholder="Task description"
             />
-            <div className="priorityContainer">
-              <p>Priority:</p>
-              <div
-                class="priority"
-                value={priority}
+            <div className="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="lowPriority"
+                value="low"
+                checked={priority === "low"}
                 onChange={(e) => setPriority(e.target.value)}
-              >
-                <input
-                  type="radio"
-                  name="priority"
-                  id="lowPriority"
-                  value="low"
-                />
-                <label for="lowPriority">Low</label>
+              />
+              <label htmlFor="lowPriority">Low</label>
 
-                <input
-                  type="radio"
-                  name="priority"
-                  id="mediumPriority"
-                  value="medium"
-                />
-                <label for="mediumPriority">Medium</label>
+              <input
+                type="radio"
+                name="priority"
+                id="mediumPriority"
+                value="medium"
+                checked={priority === "medium"}
+                onChange={(e) => setPriority(e.target.value)}
+              />
+              <label htmlFor="mediumPriority">Medium</label>
 
-                <input
-                  type="radio"
-                  name="priority"
-                  id="highPriority"
-                  value="high"
-                />
-                <label for="highPriority">High</label>
+              <input
+                type="radio"
+                name="priority"
+                id="highPriority"
+                value="high"
+                checked={priority === "high"}
+                onChange={(e) => setPriority(e.target.value)}
+              />
+              <label htmlFor="highPriority">High</label>
 
-                <div class="glider"></div>
-              </div>
+              <div className="glider"></div>
             </div>
 
             <button type="submit">Create</button>

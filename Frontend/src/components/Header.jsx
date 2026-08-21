@@ -5,7 +5,7 @@ function Header() {
   return (
     <div className="navWrapper">
       <header className="nav">
-        <img src="/favicon.png" alt="Task Manger Logo" />
+        <img src="/favicon.webp" alt="Task Manger Logo" />
         <div className="navContainer">
           <Link className="navItems removeDecoration" to="/">
             Home
