@@ -167,6 +167,8 @@ body {
   text-decoration: none;
 }
 
+.createContainer:hover,
+.modalContent:hover,
 .taskCard:hover,
 .signupContainer:hover,
 .loginContainer:hover {
@@ -181,7 +183,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #17181e;
-  border: solid #f0eff5 1px;
+  border: solid hsl(231, 13%, 30%) 1px;
   box-shadow: 0px 0px 15px -8px #f0eff5;
   border-radius: 20px;
   margin: auto;
@@ -218,12 +220,14 @@ body {
   color: #f0eff5;
 }
 
+.modalContent input::placeholder,
 .loginContainer input::placeholder,
 .signupContainer input::placeholder {
   color: #f0eff554;
   opacity: 1;
 }
 
+.modalContent input:focus,
 .loginContainer input:focus,
 .signupContainer input:focus {
   border-bottom: 1px solid #f0eff59e;
@@ -317,11 +321,83 @@ body {
 
 .modalOverlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.priorityContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.priority {
+  display: flex;
+  position: relative;
+  background: #0d0d0d;
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  width: fit-content;
+}
+
+.priority input {
+  display: none;
+}
+
+.priority label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  font-size: 14px;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #f0eff5;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease-in-out;
+}
+
+.glider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(100% / 3);
+  border-radius: 1rem;
+  z-index: 1;
+  transition:
+    transform 0.5s cubic-bezier(0.37, 1.95, 0.66, 0.56),
+    background-color 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
+}
+
+#lowPriority:checked ~ .glider {
+  transform: translateX(0%);
+  background-color: hsla(81, 97%, 64%, 0.5);
+}
+
+#mediumPriority:checked ~ .glider {
+  transform: translateX(100%);
+  background-color: hsla(43, 100%, 50%, 0.5);
+}
+
+#highPriority:checked ~ .glider {
+  transform: translateX(200%);
+  background-color: hsla(0, 93%, 57%, 0.5);
+}
+
+.error{
+  color: #f72b2b;
+  margin-top: -30px;
 }
 
 .taskCard {
@@ -394,18 +470,6 @@ body {
   flex-direction: row;
   align-items: center;
   padding: 30px;
-}
-
-select{
-  border: none;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  border-radius: 10px;
-  width: 170px;
-  height: 50px;
-  color: #f0eff5;
-  background: #0d0d0d;
 }
 
 .loginContainer button,

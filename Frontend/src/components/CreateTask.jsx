@@ -9,6 +9,16 @@ function CreateTask() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (taskName.length < 3) {
+      setError("Task name must be at least 3 characters");
+      return;
+    } else if (description.length < 10) {
+      setError("Task description must be at least 10 characters");
+      return;
+    } else if (priority.trim() === "") {
+      setError("Task priority is required");
+      return;
+    }
     try {
       const token = localStorage.getItem("token");
       const inputs = {
@@ -22,21 +32,20 @@ function CreateTask() {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(inputs)
+        body: JSON.stringify(inputs),
       });
-      if(!res.ok){
-        throw new Error(JSON.parse(res.message))
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message);
       }
     } catch (err) {
       setError(err.message);
-    }finally{
-
+    } finally {
+      setTaskName("");
+      setDescription("");
+      setPriority("");
     }
   };
-
-  if(error){
-    console.log(error)
-  }
 
   return (
     <>
@@ -46,8 +55,19 @@ function CreateTask() {
         </button>
       </div>
       {showModal && (
-        <div className="modalOverlay" onClick={() => setShowModal(false)}>
-          <form className="modalContent" onClick={(e) => e.stopPropagation()} onSubmit={submitHandler}>
+        <div
+          className="modalOverlay"
+          onClick={() => {
+            setShowModal(false);
+            setError(null);
+            setPriority("");
+          }}
+        >
+          <form
+            className="modalContent"
+            onClick={(e) => e.stopPropagation()}
+            onSubmit={submitHandler}
+          >
             <h1>Create Task</h1>
             <input
               value={taskName}
@@ -63,18 +83,43 @@ function CreateTask() {
               type="text"
               placeholder="Task description"
             />
-            <select
-              name="priority"
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
-            >
-              <option value="">-- Select Task priority --</option>
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
+            <div className="priorityContainer">
+              <p>Priority:</p>
+              <div
+                class="priority"
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+              >
+                <input
+                  type="radio"
+                  name="priority"
+                  id="lowPriority"
+                  value="low"
+                />
+                <label for="lowPriority">Low</label>
+
+                <input
+                  type="radio"
+                  name="priority"
+                  id="mediumPriority"
+                  value="medium"
+                />
+                <label for="mediumPriority">Medium</label>
+
+                <input
+                  type="radio"
+                  name="priority"
+                  id="highPriority"
+                  value="high"
+                />
+                <label for="highPriority">High</label>
+
+                <div class="glider"></div>
+              </div>
+            </div>
 
             <button type="submit">Create</button>
+            {error && <span className="error">{error}</span>}
           </form>
         </div>
       )}
