@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Modal from "./Modal";
 
-function CreateTask({onCreatingTask}) {
+function CreateTask({ onCreatingTask }) {
   const [showModal, setShowModal] = useState(false);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
@@ -59,74 +60,75 @@ function CreateTask({onCreatingTask}) {
         </button>
       </div>
       {showModal && (
-        <div
-          className="modalOverlay"
-          onClick={() => {
-            setShowModal(false);
-            setError(null);
-            setTaskName("");
-            setDescription("");
-            setPriority("");
-          }}
-        >
-          <form
-            className="modalContent"
-            onClick={(e) => e.stopPropagation()}
-            onSubmit={submitHandler}
+        <Modal onClose={() => setShowModal(false)}>
+          <div
+            className="modalOverlay"
+            onClick={() => {
+              setShowModal(false);
+              setError(null);
+              setTaskName("");
+              setDescription("");
+              setPriority("");
+            }}
           >
-            <h1>Create Task</h1>
-            <input
-              value={taskName}
-              onChange={(e) => setTaskName(e.target.value)}
-              required
-              type="text"
-              placeholder="Task Name"
-            />
-            <input
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-              type="text"
-              placeholder="Task description"
-            />
-            <div className="priority">
+            <form
+              className="modalContent"
+              onClick={(e) => e.stopPropagation()}
+              onSubmit={submitHandler}
+            >
+              <h1>Create Task</h1>
               <input
-                type="radio"
-                name="priority"
-                id="lowPriority"
-                value="low"
-                checked={priority === "low"}
-                onChange={(e) => setPriority(e.target.value)}
+                value={taskName}
+                onChange={(e) => setTaskName(e.target.value)}
+                required
+                type="text"
+                placeholder="Task Name"
               />
-              <label htmlFor="lowPriority">Low</label>
-
               <input
-                type="radio"
-                name="priority"
-                id="mediumPriority"
-                value="medium"
-                checked={priority === "medium"}
-                onChange={(e) => setPriority(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                type="text"
+                placeholder="Task description"
               />
-              <label htmlFor="mediumPriority">Medium</label>
-
-              <input
-                type="radio"
-                name="priority"
-                id="highPriority"
-                value="high"
-                checked={priority === "high"}
-                onChange={(e) => setPriority(e.target.value)}
-              />
-              <label htmlFor="highPriority">High</label>
-
-              <div className="glider"></div>
-            </div>
-
-            <button type="submit">Create</button>
-            {error && <span className="error">{error}</span>}
-          </form>
-        </div>
+              <div>
+                <p>Priority</p>
+                <div className="priority">
+                  <input
+                    type="radio"
+                    name="priority"
+                    id="lowPriority"
+                    value="low"
+                    checked={priority === "low"}
+                    onChange={(e) => setPriority(e.target.value)}
+                  />
+                  <label htmlFor="lowPriority">Low</label>
+                  <input
+                    type="radio"
+                    name="priority"
+                    id="mediumPriority"
+                    value="medium"
+                    checked={priority === "medium"}
+                    onChange={(e) => setPriority(e.target.value)}
+                  />
+                  <label htmlFor="mediumPriority">Medium</label>
+                  <input
+                    type="radio"
+                    name="priority"
+                    id="highPriority"
+                    value="high"
+                    checked={priority === "high"}
+                    onChange={(e) => setPriority(e.target.value)}
+                  />
+                  <label htmlFor="highPriority">High</label>
+                  <div className="glider"></div>
+                </div>
+              </div>
+              <button type="submit">Create</button>
+              {error && <span className="error">{error}</span>}
+            </form>
+          </div>
+        </Modal>
       )}
     </>
   );

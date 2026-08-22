@@ -1,6 +1,8 @@
-function TaskCard({ title, description, priority }) {
+import { Link } from "react-router-dom";
+
+function TaskCard({ title, description, priority, status, page }) {
   return (
-    <div className="taskCard">
+    <Link className="taskCard" to={`/tasks/${page}`}>
       {priority === "high" ? (
         <span className="taskCardHighPriority">High</span>
       ) : priority === "medium" ? (
@@ -10,7 +12,16 @@ function TaskCard({ title, description, priority }) {
       ) : undefined}
       <h2>{title}</h2>
       <p>{description}</p>
-    </div>
+      <div className="statusContainer">
+        {status === "pending" ? (
+          <span className="taskCardPending">Pending</span>
+        ) : status === "in-progress" ? (
+          <span className="taskCardInProgress">In Progress</span>
+        ) : status === "done" ? (
+          <span className="taskCardDone">Done</span>
+        ) : undefined}
+      </div>
+    </Link>
   );
 }
 
